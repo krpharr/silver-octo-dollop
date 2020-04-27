@@ -4,10 +4,18 @@ var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', function(res, req) {
+app.get('/', function(req, res) {
   res.send('Hello world(test2)!\n');
 });
 
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+app.get('/api/test', function(req, res) {
+  const jsonObj = {
+    username: "Fred",
+    type: "client"
+  };
+  res.json(jsonObj);
+});
+
+const port = 80;
 app.listen(port);
 console.log('Listening on port', port);
